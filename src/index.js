@@ -33,7 +33,7 @@ function selectFont(obj) {
   var fileName = obj.src.split('/').slice(-1)[0];
   var fontName = fileName.split('.')[0].split('-')[0];
   localStorage.setItem('touch-shodo-font', fontName);
-  document.getElementById('selectedFont').src = '/fonts/' + fontName + '-600.jpg';
+  document.getElementById('selectedFont').src = '/touch-shodo/fonts/' + fontName + '-600.jpg';
 }
 
 function changeGrade(obj) {
@@ -167,5 +167,5 @@ var selectedFontName = localStorage.getItem('touch-shodo-font');
 if (!selectedFontName) {
   selectedFontName = 'KouzanMouhituFont';
 }
-document.getElementById('selectedFont').src = '/fonts/' + selectedFontName + '-600.jpg';
+document.getElementById('selectedFont').src = '/touch-shodo/fonts/' + selectedFontName + '-600.jpg';
 
