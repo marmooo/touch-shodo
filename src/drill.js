@@ -608,7 +608,7 @@ async function fetchJsons(grades) {
 
 let kanjis = '';
 function initQuery(mode) {
-  const fontFace = new FontFace(fontFamily, 'url(/fonts/' + fontFamily + '.woff2)');
+  const fontFace = new FontFace(fontFamily, 'url(/touch-shodo/fonts/' + fontFamily + '.woff2)');
   fontFace.load().then(function() {
     document.fonts.add(fontFace);
 
