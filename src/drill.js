@@ -481,8 +481,9 @@ function calcKanjiScore(tegakiCount, tehonCount, inclusionCount) {
   // 線長を優遇し過ぎると ["未","末"], ["土","士"] の見分けができなくなる (10% 許容)
   var lineScore = (1 - Math.abs((tehonCount - tegakiCount) / tehonCount)) * 1.1;
   if (lineScore > 1) { lineScore = 1; }
-  // 包含率を優遇し過ぎると ["一","つ"], ["二","＝"] の見分けができなくなる (50% 許容)
-  var inclusionScore = (tegakiCount - inclusionCount) / tegakiCount * 2;
+  // 画ごとに判定していないので厳しく設定
+  // 包含率を優遇し過ぎると ["一","つ"], ["二","＝"] の見分けができなくなる (30% 許容)
+  var inclusionScore = (tegakiCount - inclusionCount) / tegakiCount * 1.3;
   if (inclusionScore > 1) { inclusionScore = 1; }
   var kakuScore = lineScore * inclusionScore * 100;
   if (kakuScore <   0) { kakuScore =   0; }
