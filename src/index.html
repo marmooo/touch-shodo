@@ -14,6 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>タッチ書道ドリル</title>
     <meta name="description" content="自動採点付きの書道ドリルです。">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/touch-shodo/sw.js');
+        });
+      }
+    </script>
     <link rel="apple-touch-icon" sizes="180x180" href="/touch-shodo/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/touch-shodo/favicon/favicon-48x48.png">
     <link rel="manifest" href="/touch-shodo/favicon/site.webmanifest">
