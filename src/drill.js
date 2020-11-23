@@ -206,6 +206,7 @@ function loadFont(kanji, kanjiId, parentNode, pos, loadCanvas) {
   //   text.setAttribute('font-weight', 900);
   // }
   var object = box.shadowRoot.querySelector('#tehon');
+  object.setAttribute('alt', kanji);
   object.setAttribute('data-id', kanjiId);
   object.setAttribute('data-pos', pos);
   drawFont(object, kanji, kanjiId, loadCanvas);

@@ -38,27 +38,29 @@
     </style>
   </head>
   <body>
-    <nav id="header" class="navbar navbar-expand navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="/touch-shodo/">
-          タッチ<ruby>書道<rp>(</rp><rt>しょどう</rt><rp>)</rp></ruby>ドリル
-        </a>
-        <div class="navbar-nav">
-          <select onchange="changeGrade(this)" id="gradeOption" class="ml-1 form-control form-control-sm">
-            <option>小1</option>
-            <option>小2</option>
-            <option>小3</option>
-            <option selected>小4</option>
-            <option>小5</option>
-            <option>小6</option>
-            <option>中1/2</option>
-            <option>中3</option>
-          </select>
-          <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+    <header>
+      <nav class="navbar navbar-expand navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/touch-shodo/">
+            タッチ<ruby>書道<rp>(</rp><rt>しょどう</rt><rp>)</rp></ruby>ドリル
+          </a>
+          <div class="navbar-nav">
+            <select onchange="changeGrade(this)" id="gradeOption" class="ml-1 form-control form-control-sm">
+              <option>小1</option>
+              <option>小2</option>
+              <option>小3</option>
+              <option selected>小4</option>
+              <option>小5</option>
+              <option>小6</option>
+              <option>中1/2</option>
+              <option>中3</option>
+            </select>
+            <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div class="container">
+      </nav>
+    </header>
+    <main class="container">
       <noscript>
         <div class="alert alert-info text-center">JavaScript を ON にしてください</div>
       </noscript>
@@ -145,7 +147,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
     <footer class="pt-4 alert text-center">
       <div class="pt-3">
         <a class="px-1" href="/">Home</a>
