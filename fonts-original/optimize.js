@@ -1,8 +1,6 @@
 const execSync = require('child_process').execSync;
 const glob = require('glob');
 
-console.log(__dirname);
-
 glob('*.woff2', (err, paths) => {
   paths.forEach(path => {
     console.log(path);
