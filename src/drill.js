@@ -215,7 +215,7 @@ function loadFont(kanji, kanjiId, parentNode, pos, loadCanvas) {
 }
 
 function showKanjiScore(kanjiScore, scoreObj, tehonKanji, object, kanjiId) {
-  var kanjiScore = Math.round(kanjiScore);
+  var kanjiScore = Math.floor(kanjiScore);
   if (kanjiScore >= 80) {
     correctAudio.play();
   } else {
@@ -479,14 +479,15 @@ function getInclusionCount(tegakiImgData, tehonImgData) {
 }
 
 function calcKanjiScore(tegakiCount, tehonCount, inclusionCount) {
-  // 線長を優遇し過ぎると ["未","末"], ["土","士"] の見分けができなくなる (10% 許容)
-  var lineScore = (1 - Math.abs((tehonCount - tegakiCount) / tehonCount)) * 1.1;
+  // 線長を優遇し過ぎると ["未","末"], ["土","士"] の見分けができなくなる
+  var lineScore = (1 - Math.abs((tehonCount - tegakiCount) / tehonCount));
   if (lineScore > 1) { lineScore = 1; }
-  // 画ごとに判定していないので厳しく設定
-  // 包含率を優遇し過ぎると ["一","つ"], ["二","＝"] の見分けができなくなる (30% 許容)
-  var inclusionScore = (tegakiCount - inclusionCount) / tegakiCount * 1.3;
+  // 包含率を優遇し過ぎると ["一","つ"], ["二","＝"] の見分けができなくなる
+  var inclusionScore = (tegakiCount - inclusionCount) / tegakiCount;
   if (inclusionScore > 1) { inclusionScore = 1; }
-  var kakuScore = lineScore * inclusionScore * 100;
+  // 画ごとに判定していないのでゆるく採点
+  // 100点が取れないので少しだけ採点を甘くする
+  var kakuScore = lineScore * inclusionScore * 100 * 1.2;
   if (kakuScore <   0) { kakuScore =   0; }
   if (kakuScore > 100) { kakuScore = 100; }
   if (isNaN(kakuScore)) { kakuScore = 0; }

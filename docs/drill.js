@@ -19,7 +19,7 @@ function estimateFontWidth(ctx,kanji,spacing,fontSize){var width=maxWidth;ctx.fi
 function drawFont(canvas,kanji,kanjiId,loadCanvas){var ctx=canvas.getContext('2d');var spacing=canvasSize*0.1;var fontSize=canvasSize*0.8;ctx.font=fontSize+'px '+fontFamily;if(loadCanvas){ctx.fillStyle='lightgray';fillTextBold(ctx,kanji,spacing,fontSize);toggleStroke(canvas,kanjiId);}else{ctx.fillText(kanji,spacing,fontSize);}}
 function loadFont(kanji,kanjiId,parentNode,pos,loadCanvas){var box;if(loadCanvas){box=document.createElement('tegaki-box');}else{box=document.createElement('tehon-box');}
 var object=box.shadowRoot.querySelector('#tehon');object.setAttribute('alt',kanji);object.setAttribute('data-id',kanjiId);object.setAttribute('data-pos',pos);drawFont(object,kanji,kanjiId,loadCanvas);parentNode.appendChild(box);return object;}
-function showKanjiScore(kanjiScore,scoreObj,tehonKanji,object,kanjiId){var kanjiScore=Math.round(kanjiScore);if(kanjiScore>=80){correctAudio.play();}else{incorrectAudio.play();}
+function showKanjiScore(kanjiScore,scoreObj,tehonKanji,object,kanjiId){var kanjiScore=Math.floor(kanjiScore);if(kanjiScore>=80){correctAudio.play();}else{incorrectAudio.play();}
 scoreObj.classList.remove('d-none');scoreObj.innerText=kanjiScore;if(localStorage.getItem('hint')!=1){object.style.visibility='visible';}}
 function getProblemScores(tegakiPanel,tehonPanel,objects,tegakiPads){var promises=[];objects.forEach((object,i)=>{var kanjiId=object.dataset.id;var pos=parseInt(object.dataset.pos);var kanjiScore=0;var tegakiData=tegakiPads[i].toData();if(tegakiData.length!=0){var tehonKanji=tehonPanel.children[pos].shadowRoot.querySelector('object');var scoreObj=tegakiPanel.children[pos].shadowRoot.querySelector('#score');var kanjiScore=getKanjiScore(tegakiData,object,kanjiId);showKanjiScore(kanjiScore,scoreObj,tehonKanji,object,kanjiId);}
 promises[i]=kanjiScore;});return Promise.all(promises);}
@@ -43,9 +43,9 @@ function countNoTransparent(data){var count=0;for(var i=3;i<data.length;i+=4){if
 return count;}
 function getInclusionCount(tegakiImgData,tehonImgData){for(var i=3;i<tegakiImgData.length;i+=4){if(tehonImgData[i]!=0){tegakiImgData[i]=0;}}
 var inclusionCount=countNoTransparent(tegakiImgData);return inclusionCount;}
-function calcKanjiScore(tegakiCount,tehonCount,inclusionCount){var lineScore=(1-Math.abs((tehonCount-tegakiCount)/tehonCount))*1.1;if(lineScore>1){lineScore=1;}
-var inclusionScore=(tegakiCount-inclusionCount)/tegakiCount*1.3;if(inclusionScore>1){inclusionScore=1;}
-var kakuScore=lineScore*inclusionScore*100;if(kakuScore<0){kakuScore=0;}
+function calcKanjiScore(tegakiCount,tehonCount,inclusionCount){var lineScore=(1-Math.abs((tehonCount-tegakiCount)/tehonCount));if(lineScore>1){lineScore=1;}
+var inclusionScore=(tegakiCount-inclusionCount)/tegakiCount;if(inclusionScore>1){inclusionScore=1;}
+var kakuScore=lineScore*inclusionScore*100*1.2;if(kakuScore<0){kakuScore=0;}
 if(kakuScore>100){kakuScore=100;}
 if(isNaN(kakuScore)){kakuScore=0;}
 return kakuScore;}
