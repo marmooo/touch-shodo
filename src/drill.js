@@ -370,23 +370,25 @@ function resizeTegakiContents(tegakiPads) {
     var canvas = tegakiPad._canvas;
     resizeCanvasSize(canvas, canvasSize);
     var data = tegakiPad.toData();
-    tegakiPad.maxWidth = maxWidth;
-    if (prevCanvasSize < canvasSize) {
-      data.forEach((tegakiData, i) => {
-        tegakiData.forEach((datum, j) => {
-          data[i][j].x *= 2;
-          data[i][j].y *= 2;
+    if (data.length > 0) {
+      tegakiPad.maxWidth = maxWidth;
+      if (prevCanvasSize < canvasSize) {
+        data.forEach((tegakiData, i) => {
+          tegakiData.forEach((datum, j) => {
+            data[i][j].x *= 2;
+            data[i][j].y *= 2;
+          });
         });
-      });
-    } else {
-      data.forEach((tegakiData, i) => {
-        tegakiData.forEach((datum, j) => {
-          data[i][j].x /= 2;
-          data[i][j].y /= 2;
+      } else {
+        data.forEach((tegakiData, i) => {
+          tegakiData.forEach((datum, j) => {
+            data[i][j].x /= 2;
+            data[i][j].y /= 2;
+          });
         });
-      });
+      }
+      tegakiPad.fromData(data);
     }
-    tegakiPad.fromData(data);
   });
 }
 
