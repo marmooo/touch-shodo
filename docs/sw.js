@@ -1,4 +1,4 @@
-var CACHE_NAME = '2020-12-06 11:00';
+var CACHE_NAME = '2020-12-12 12:20';
 var urlsToCache = [
   '/touch-shodo/',
   '/touch-shodo/index.js',
