@@ -99,7 +99,7 @@
         @media only screen {
           #guard { touch-action:none; position:absolute; top:0; left:0; background-color:rgba(0, 0, 0, .25); width:100%; height:100%; }
         }
-        @media screen and (min-width:768px) {
+        @media screen, print and (min-width:768px) {
           #problem { width:640px; }
         }
       </style>
@@ -149,7 +149,7 @@
           -webkit-touch-callout:none; touch-action:none;
         }
         .d-none { display:none; }
-        @media screen and (min-width:768px) {
+        @media screen, print and (min-width:768px) {
           #dict img { width:32px; height:32px; }
           canvas { width:280px; height:280px; }
         }
@@ -196,7 +196,7 @@
           width:32px; height:32px; font-size:16px; line-height:32px;
           color:red; background-color:white; border:1px solid red; border-radius:16px;
         }
-        @media screen and (min-width:768px) {
+        @media screen, print and (min-width:768px) {
           #eraser { width:32px; height:32px; }
           #score {
             width:64px; height:64px; font-size:32px; line-height:64px; border-radius:32px;
