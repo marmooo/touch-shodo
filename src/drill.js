@@ -280,7 +280,7 @@ function setScoringButton(problemBox, tegakiPanel, tehonPanel, objects, tegakiPa
         if (next) {
           next.shadowRoot.querySelector('#guard').style.height = '0';
           const headerHeight = document.getElementById('header').offsetHeight;
-          const top = next.getBoundingClientRect().top + document.documentElement.scrollTop + headerHeight;
+          const top = next.getBoundingClientRect().top + document.documentElement.scrollTop - headerHeight;
           window.scrollTo({ top:top, behavior:'smooth' });
         } else {
           window.removeEventListener('touchstart', scrollEvent, { passive:false });
