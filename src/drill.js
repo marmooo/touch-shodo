@@ -398,8 +398,8 @@ function resizeTegakiContents(tegakiPads) {
 }
 
 function resizeCanvasSize(canvas, canvasSize) {
-  // canvas.style.width = canvasSize + 'px';
-  // canvas.style.height = canvasSize + 'px';
+  canvas.style.width = canvasSize + 'px';
+  canvas.style.height = canvasSize + 'px';
   canvas.setAttribute('width', canvasSize);
   canvas.setAttribute('height', canvasSize);
 }
@@ -621,7 +621,7 @@ async function fetchJsons(grades) {
 
 let kanjis = '';
 function initQuery(mode) {
-  const fontFace = new FontFace(fontFamily, 'url(/touch-shodo/fonts/' + fontFamily + '.woff2)');
+  const fontFace = new FontFace(fontFamily, 'url(https://marmooo.github.io/touch-shodo/fonts/' + fontFamily + '.woff2)');
   fontFace.load().then(function() {
     document.fonts.add(fontFace);
 
