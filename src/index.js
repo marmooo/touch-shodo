@@ -131,7 +131,7 @@ function generateDrill() {
 
 function setLinkTemplate() {
   var a = document.createElement('a');
-  a.className = 'mr-1 mb-1 btn btn-outline-secondary btn-sm';
+  a.className = 'me-1 mb-1 btn btn-outline-secondary btn-sm';
   return a;
 }
 const linkTemplate = setLinkTemplate();
@@ -168,4 +168,5 @@ if (!selectedFontName) {
   selectedFontName = 'KouzanMouhituFont';
 }
 document.getElementById('selectedFont').src = '/touch-shodo/fonts/' + selectedFontName + '-600.jpg';
+new bootstrap.Carousel(document.getElementById('fontsCarousel'));
 

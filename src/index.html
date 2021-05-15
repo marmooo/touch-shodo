@@ -28,11 +28,9 @@
     <link rel="shortcut icon" href="/touch-shodo/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/touch-shodo/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <meta name="theme-color" content="#ffffff"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
       .carousel-item img { cursor:pointer; }
-      .carousel-control-next-icon, .carousel-control-prev-icon { filter: invert(1); }
       .card-header.ruby { padding: 1rem 1.25rem .5rem 1.25rem }
       html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
       @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
@@ -46,7 +44,7 @@
             タッチ<ruby>書道<rp>(</rp><rt>しょどう</rt><rp>)</rp></ruby>ドリル
           </a>
           <div class="navbar-nav">
-            <select onchange="changeGrade(this)" id="gradeOption" class="ml-1 form-control form-control-sm">
+            <select onchange="changeGrade(this)" id="gradeOption" class="form-select form-select-sm" aria-label="学年">
               <option>小1</option>
               <option>小2</option>
               <option>小3</option>
@@ -56,7 +54,7 @@
               <option>中1/2</option>
               <option>中3</option>
             </select>
-            <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+            <button title="ダークモード切替" onclick="toggleDarkMode()" class="fs-4 btn p-0 ms-1">🌓</button>
           </div>
         </div>
       </nav>
@@ -73,7 +71,7 @@
           <div class="row">
             <div class="col">
               <h6>タッチで<ruby>選択<rp>(</rp><rt>せんたく</rt><rp>)</rp></ruby></h6>
-              <div id="fontsCarousel" class="carousel slide" data-ride="carousel">
+              <div id="fontsCarousel" class="carousel carousel-dark slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active" data-interval="10000">
                     <img onclick="selectFont(this)" src="/touch-shodo/fonts/aoyagireisyosimo-600.jpg" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid d-block">
@@ -94,13 +92,13 @@
                     <img onclick="selectFont(this)" src="/touch-shodo/fonts/AoyagiKouzanT-600.jpg" width="600" height="200" alt="AoyagiKouzanTFont" class="img-fluid d-block">
                   </div>
                 </div>
-                <a class="carousel-control-prev" href="#fontsCarousel" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#fontsCarousel" role="button" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
+                  <span class="visually-hidden">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#fontsCarousel" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#fontsCarousel" role="button" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
+                  <span class="visually-hidden">Next</span>
                 </a>
               </div>
             </div>
@@ -159,8 +157,7 @@
         / <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
       </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha512-c4wThPPCMmu4xsVufJHokogA9X4ka58cy9cEYf5t147wSw0Zo43fwdTy/IC0k1oLxXcUlPvWZMnD8be61swW7g==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="index.js"></script>
   </body>
 </html>
