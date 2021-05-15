@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" class="bg-white">
+<html lang="ja">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142997649-1"></script>
@@ -53,7 +53,8 @@
         font-family: KouzanBrushFontSousyo;
         src: url('/touch-shodo/fonts/KouzanBrushFontSousyo.woff2') format('woff2');
       }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg) brightness(1.5); }
+      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
+      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
     </style>
   </head>
   <body>
