@@ -99,13 +99,10 @@ customElements.define('tehon-box', class extends HTMLElement {
   constructor() {
     super();
     const template = document.getElementById('tehon-box').content.cloneNode(true);
-    if (window.innerWidth >= 768) {
-      var canvases = template.querySelectorAll('canvas');
-      [...canvases].forEach(canvas => {
-        canvas.setAttribute('width', canvasSize);
-        canvas.setAttribute('height', canvasSize);
-      });
-    }
+    var canvases = template.querySelectorAll('canvas');
+    [...canvases].forEach(canvas => {
+      resizeCanvasSize(canvas, canvasSize);
+    });
     this.attachShadow({ mode:'open' }).appendChild(template);
   }
 });
@@ -113,13 +110,10 @@ customElements.define('tegaki-box', class extends HTMLElement {
   constructor() {
     super();
     const template = document.getElementById('tegaki-box').content.cloneNode(true);
-    if (window.innerWidth >= 768) {
-      var canvases = template.querySelectorAll('canvas');
-      [...canvases].forEach(canvas => {
-        canvas.setAttribute('width', canvasSize);
-        canvas.setAttribute('height', canvasSize);
-      });
-    }
+    var canvases = template.querySelectorAll('canvas');
+    [...canvases].forEach(canvas => {
+      resizeCanvasSize(canvas, canvasSize);
+    });
     this.attachShadow({ mode:'open' }).appendChild(template);
   }
 });
