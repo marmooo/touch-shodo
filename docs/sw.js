@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-05-16 00:00';
+var CACHE_NAME = '2021-05-19 01:30';
 var urlsToCache = [
   '/touch-shodo/',
   '/touch-shodo/index.js',
@@ -10,7 +10,9 @@ var urlsToCache = [
   '/touch-shodo/mp3/correct3.mp3',
   '/touch-shodo/mp3/incorrect1.mp3',
   '/touch-shodo/mp3/stupid5.mp3',
-  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js',
+  'https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js',
 ];
 
 self.addEventListener('install', function(event) {
