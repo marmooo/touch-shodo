@@ -149,9 +149,14 @@
           position:absolute; top:1px; left:1px; background-color:white; cursor:pointer;
           -webkit-touch-callout:none; touch-action:none;
         }
+        #eraser {
+          position:absolute; top:1px; right:1px; background-color:white; cursor:pointer;
+          -webkit-touch-callout:none; touch-action:none;
+        }
         .d-none { display:none; }
         @media screen, print and (min-width:768px) {
           #dict img { width:32px; height:32px; }
+          #eraser { width:32px; height:32px; }
           canvas { width:280px; height:280px; }
         }
       </style>
@@ -160,6 +165,7 @@
         <a id="dict" target="_blank" rel="noopener noreferer">
           <img src="/touch-shodo/svg/dict.svg" width="16" height="16" alt="辞書で調べる">
         </a>
+        <img src="/touch-shodo/svg/eraser.svg" id="eraser" width="16" height="16" alt="文字を消す">
       </div>
     </template>
     <template id="tegaki-box">
@@ -188,17 +194,12 @@
         #tehon { display:block; border:solid 1px silver; }
         #tegaki { position:absolute; top:0px; left:0px; border:solid 1px silver; }
         .d-none { display:none; }
-        #eraser {
-          position:absolute; top:1px; right:1px; background-color:white; cursor:pointer;
-          -webkit-touch-callout:none; touch-action:none;
-        }
         #score {
           position:absolute; top:1px; left:1px;
           width:32px; height:32px; font-size:16px; line-height:32px;
           color:red; background-color:white; border:1px solid red; border-radius:16px;
         }
         @media screen, print and (min-width:768px) {
-          #eraser { width:32px; height:32px; }
           #score {
             width:64px; height:64px; font-size:32px; line-height:64px; border-radius:32px;
           }
@@ -208,7 +209,6 @@
       <div class="container">
         <canvas id="tehon" width="140" height="140"></canvas>
         <canvas id="tegaki" width="140" height="140"></canvas>
-        <img src="/touch-shodo/svg/eraser.svg" id="eraser" width="16" height="16" alt="文字を消す">
         <div id="score" class="d-none"></div>
       </div>
     </template>
