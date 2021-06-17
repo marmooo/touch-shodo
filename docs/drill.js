@@ -47,7 +47,7 @@ function getInclusionCount(tegakiImgData,tehonImgData){for(var i=3;i<tegakiImgDa
 var inclusionCount=countNoTransparent(tegakiImgData);return inclusionCount;}
 function calcKanjiScore(tegakiCount,tehonCount,inclusionCount){var lineScore=(1-Math.abs((tehonCount-tegakiCount)/tehonCount));if(lineScore>1){lineScore=1;}
 var inclusionScore=(tegakiCount-inclusionCount)/tegakiCount;if(inclusionScore>1){inclusionScore=1;}
-var kakuScore=lineScore*inclusionScore*100*1.2;if(kakuScore<0){kakuScore=0;}
+var kakuScore=lineScore*inclusionScore*100*1.3;if(kakuScore<0){kakuScore=0;}
 if(kakuScore>100){kakuScore=100;}
 if(isNaN(kakuScore)){kakuScore=0;}
 return kakuScore;}
