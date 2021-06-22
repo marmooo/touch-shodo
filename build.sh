@@ -1,3 +1,4 @@
+cp -r graded-kanji-examples/dist/* src/data
 dir=docs
 cp -r fonts src
 cp -r src/* $dir
