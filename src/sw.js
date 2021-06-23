@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-06-22 12:55';
+var CACHE_NAME = '2021-06-24 07:06';
 var urlsToCache = [
   '/touch-shodo/',
   '/touch-shodo/index.js',
@@ -11,8 +11,8 @@ var urlsToCache = [
   '/touch-shodo/mp3/incorrect1.mp3',
   '/touch-shodo/mp3/stupid5.mp3',
   '/touch-shodo/signature_pad.umd.min.js',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
 ];
 
 self.addEventListener('install', function(event) {
