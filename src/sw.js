@@ -10,6 +10,7 @@ var urlsToCache = [
   '/touch-shodo/mp3/correct3.mp3',
   '/touch-shodo/mp3/incorrect1.mp3',
   '/touch-shodo/mp3/stupid5.mp3',
+  '/touch-shodo/favicon/original.svg',
   '/touch-shodo/signature_pad.umd.min.js',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
