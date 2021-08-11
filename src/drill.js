@@ -409,7 +409,7 @@ function loadProblem(wordYomi) {
 
 function resizeTegakiContents(tegakiPads) {
   tegakiPads.forEach(tegakiPad => {
-    var canvas = tegakiPad._canvas;
+    var canvas = tegakiPad.canvas;
     resizeCanvasSize(canvas, canvasSize);
     var data = tegakiPad.toData();
     if (data.length > 0) {
