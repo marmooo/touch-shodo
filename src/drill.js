@@ -466,8 +466,8 @@ function resizeTegakiContents(tegakiPads) {
       if (prevCanvasSize < canvasSize) {
         for (let i = 0; i < data.length; i++) {
           for (let j = 0; j < data[i].length; j++) {
-            data[i][j].x /= 2;
-            data[i][j].y /= 2;
+            data[i][j].x *= 2;
+            data[i][j].y *= 2;
           }
         }
       } else {
