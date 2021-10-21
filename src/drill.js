@@ -92,7 +92,7 @@ function loadConfig() {
     document.documentElement.dataset.theme = "dark";
   }
   if (localStorage.getItem("hint") == 1) {
-    document.getElementById("hint").innerText = "EASY";
+    document.getElementById("hint").textContent = "EASY";
   }
 }
 loadConfig();
@@ -110,10 +110,10 @@ function toggleDarkMode() {
 function toggleHint() {
   if (localStorage.getItem("hint") == 1) {
     localStorage.setItem("hint", 0);
-    this.innerText = "HARD";
+    this.textContent = "HARD";
   } else {
     localStorage.setItem("hint", 1);
-    this.innerText = "EASY";
+    this.textContent = "EASY";
   }
   toggleAllStroke();
 }
@@ -314,7 +314,7 @@ function showKanjiScore(kanjiScore, scoreObj, object) {
     playAudio(incorrectAudio);
   }
   scoreObj.classList.remove("d-none");
-  scoreObj.innerText = kanjiScore;
+  scoreObj.textContent = kanjiScore;
   if (localStorage.getItem("hint") != 1) {
     object.style.visibility = "visible";
   }
@@ -434,7 +434,7 @@ function loadProblem(wordYomi) {
   const problemBox = document.createElement("problem-box");
   const shadow = problemBox.shadowRoot;
   const info = shadow.querySelector("#info");
-  info.innerText = word + " (" + yomi + ")";
+  info.textContent = word + " (" + yomi + ")";
   const search = shadow.querySelector("#search");
   search.href = "https://www.google.com/search?q=" + word + "とは";
   const objects = [];
@@ -622,7 +622,7 @@ function report() {
   for (let i = 0; i < problems.length; i++) {
     const tegakis = problems[i].shadowRoot.querySelector("#tegaki").children;
     for (let j = 0; j < tegakis.length; j++) {
-      const score = tegakis[j].shadowRoot.querySelector("#score").innerText;
+      const score = tegakis[j].shadowRoot.querySelector("#score").textContent;
       scores.push(parseInt(score));
     }
   }
