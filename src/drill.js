@@ -578,7 +578,7 @@ function calcKanjiScore(tegakiCount, tehonCount, inclusionCount) {
   if (inclusionScore > 1) inclusionScore = 1;
   // 画ごとに判定していないのでゆるく採点
   // 100点が取れないので少しだけ採点を甘くする
-  let kakuScore = lineScore * inclusionScore * 100 * 1.3;
+  let kakuScore = lineScore * inclusionScore * 100 * 1.7;
   if (kakuScore < 0) kakuScore = 0;
   if (kakuScore > 100) kakuScore = 100;
   if (isNaN(kakuScore)) kakuScore = 0;
