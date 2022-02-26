@@ -2,5 +2,6 @@ cp -r graded-kanji-examples/dist/* src/data
 cp -r fonts src
 mkdir -p docs
 cp -r src/* docs
-minify -r src -o docs
+drop-inline-css -r src -o docs
+minify -r docs -o docs
 
