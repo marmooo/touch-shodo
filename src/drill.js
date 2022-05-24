@@ -42,6 +42,7 @@ const dirNames = [
   "常用",
   "常用外",
 ];
+let level = 2;
 let correctAudio, incorrectAudio, correctAllAudio, stupidAudio;
 loadAudios();
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -93,6 +94,9 @@ function loadConfig() {
   }
   if (localStorage.getItem("hint") == 1) {
     document.getElementById("hint").textContent = "EASY";
+  }
+  if (localStorage.getItem("touch-shodo-level")) {
+    level = parseInt(localStorage.getItem("touch-shodo-level"));
   }
 }
 loadConfig();
@@ -569,6 +573,23 @@ function getInclusionCount(tegakiImgData, tehonImgData) {
   return inclusionCount;
 }
 
+function getScoringFactor(level) {
+  switch (level) {
+    case 0:
+      return 0.5 ** 2;
+    case 1:
+      return 0.6 ** 2;
+    case 2:
+      return 0.7 ** 2;
+    case 3:
+      return 0.8 ** 2;
+    case 4:
+      return 0.9 ** 2;
+    default:
+      return 0.7 ** 2;
+  }
+}
+
 function calcKanjiScore(tegakiCount, tehonCount, inclusionCount) {
   // 線長を優遇し過ぎると ["未","末"], ["土","士"] の見分けができなくなる
   let lineScore = (1 - Math.abs((tehonCount - tegakiCount) / tehonCount));
@@ -578,7 +599,7 @@ function calcKanjiScore(tegakiCount, tehonCount, inclusionCount) {
   if (inclusionScore > 1) inclusionScore = 1;
   // 画ごとに判定していないのでゆるく採点
   // 100点が取れないので少しだけ採点を甘くする
-  let kakuScore = lineScore * inclusionScore * 100 * 1.7;
+  let kakuScore = lineScore * inclusionScore * 100 / getScoringFactor(level);
   if (kakuScore < 0) kakuScore = 0;
   if (kakuScore > 100) kakuScore = 100;
   if (isNaN(kakuScore)) kakuScore = 0;
