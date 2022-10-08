@@ -1,4 +1,4 @@
-var CACHE_NAME = "2022-09-25 10:38";
+var CACHE_NAME = "2022-10-08 11:03";
 var urlsToCache = [
   "/touch-shodo/",
   "/touch-shodo/index.js",
@@ -11,8 +11,8 @@ var urlsToCache = [
   "/touch-shodo/mp3/incorrect1.mp3",
   "/touch-shodo/mp3/stupid5.mp3",
   "/touch-shodo/favicon/favicon.svg",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js",
   "https://cdn.jsdelivr.net/npm/signature_pad@4.0.9/dist/signature_pad.umd.min.js",
 ];
 
