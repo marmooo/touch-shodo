@@ -156,7 +156,10 @@
           src: url('/touch-shodo/fonts/KouzanBrushFontSousyo.woff2') format('woff2');
         }
         .container { position:relative; }
-        canvas { width:140px; height:140px; display:block; border:solid 1px silver; }
+        canvas {
+          width:140px; height:140px; display:block; border:solid 1px silver;
+          -webkit-user-select:none;
+        }
         .dict {
           position:absolute; top:1px; left:1px; background-color:white; cursor:pointer;
           -webkit-touch-callout:none; touch-action:none;
