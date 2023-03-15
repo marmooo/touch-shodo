@@ -174,9 +174,9 @@ document.getElementById("levelOption").onchange = changeLevel;
   .forEach((img) => {
     img.onclick = selectFont;
   });
-document.getElementById("search").addEventListener("keydown", function (event) {
+document.getElementById("search").addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
-    const words = this.value;
+    const words = event.target.value;
     if (words && words.split("").some((word) => w9.includes(word))) {
       location.href = `/touch-shodo/drill/?q=${words}`;
     }
