@@ -476,11 +476,13 @@ function resizeTehonContents() {
     const tehonBoxes = problem.shadowRoot.querySelector(".tehon").children;
     [...tegakiBoxes].forEach((tegakiBox) => {
       const canvas = tegakiBox.shadowRoot.querySelector(".tehon");
+      const kanjiId = canvas.dataset.id;
       resizeCanvasSize(canvas, canvasSize);
       drawFont(canvas, toKanji(kanjiId), true);
     });
     [...tehonBoxes].forEach((tehonBox) => {
       const canvas = tehonBox.shadowRoot.querySelector(".tehon");
+      const kanjiId = canvas.dataset.id;
       resizeCanvasSize(canvas, canvasSize);
       drawFont(canvas, toKanji(kanjiId), false);
     });
