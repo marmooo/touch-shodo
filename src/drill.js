@@ -296,9 +296,9 @@ function loadFont(kanji, kanjiId, parentNode, pos, loadCanvas) {
 function showKanjiScore(kanjiScore, scoreObj, object) {
   kanjiScore = Math.floor(kanjiScore);
   if (kanjiScore >= 80) {
-    playAudio(correctAudio);
+    playAudio("correct");
   } else {
-    playAudio(incorrectAudio);
+    playAudio("incorrect");
   }
   scoreObj.classList.remove("d-none");
   scoreObj.textContent = kanjiScore;
@@ -637,7 +637,7 @@ function report() {
   }
   score /= scores.length;
   if (score >= 80) {
-    playAudio(correctAllAudio);
+    playAudio("correctAll");
     let clearedKanjis = localStorage.getItem("touch-shodo");
     if (clearedKanjis) {
       kanjis.split("").forEach((kanji) => {
@@ -655,7 +655,7 @@ function report() {
       location.href = "/touch-shodo/";
     }, 3000);
   } else {
-    playAudio(stupidAudio);
+    playAudio("stupid");
     document.getElementById("report").classList.add("d-none");
     document.getElementById("incorrectReport").classList.remove("d-none");
     setTimeout(function () {
