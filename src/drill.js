@@ -325,7 +325,7 @@ function setScoringButton(
   word,
 ) {
   const scoring = problemBox.shadowRoot.querySelector(".scoring");
-  scoring.addEventListener("click", function () {
+  scoring.addEventListener("click", () => {
     getProblemScores(tegakiPanel, objects, tegakiPads).then(
       (scores) => {
         if (scores.every((score) => score >= 80)) {
@@ -495,7 +495,7 @@ function loadDrill(drill) {
     const pads = loadProblem(wordYomi);
     tegakiPads = tegakiPads.concat(pads);
   });
-  window.onresize = function () {
+  window.onresize = () => {
     prevCanvasSize = canvasSize;
     if (window.innerWidth >= 768) {
       canvasSize = 280;
@@ -652,7 +652,7 @@ function report() {
     playAudio("stupid");
     document.getElementById("report").classList.add("d-none");
     document.getElementById("incorrectReport").classList.remove("d-none");
-    setTimeout(function () {
+    setTimeout(() => {
       document.getElementById("report").classList.remove("d-none");
       document.getElementById("incorrectReport").classList.add("d-none");
     }, 6000);
@@ -695,7 +695,7 @@ function initQuery() {
     fontFamily,
     "url(https://marmooo.github.io/touch-shodo/fonts/" + fontFamily + ".woff2)",
   );
-  fontFace.load().then(function () {
+  fontFace.load().then(() => {
     document.fonts.add(fontFace);
 
     const num = 5;
