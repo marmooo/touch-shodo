@@ -307,9 +307,8 @@ function getProblemScores(tegakiPanel, objects, tegakiPads) {
     const tegakiData = tegakiPads[i].toData();
     let kanjiScore = 0;
     if (tegakiData.length != 0) {
-      const scoreObj = tegakiPanel.children[pos].shadowRoot.querySelector(
-        ".score",
-      );
+      const scoreObj = tegakiPanel.children[pos]
+        .shadowRoot.querySelector(".score");
       kanjiScore = getKanjiScore(tegakiData, object);
       showKanjiScore(kanjiScore, scoreObj, object);
     }
@@ -381,21 +380,21 @@ function setSignaturePad(object) {
 function setEraser(tegakiPad, tegakiPanel, tehonPanel, object) {
   const currKanji = object.getRootNode().host;
   const kanjiPos = [...tegakiPanel.children].findIndex((x) => x == currKanji);
-  tehonPanel.children[kanjiPos].shadowRoot.querySelector(".eraser").onclick =
-    function () {
-      const data = tegakiPad.toData();
-      if (data) {
-        tegakiPad.clear();
-      }
-      const pos = parseInt(object.dataset.pos);
-      const scoreObj = tegakiPanel.children[pos].shadowRoot.querySelector(
-        ".score",
-      );
-      scoreObj.classList.add("d-none");
-      if (localStorage.getItem("hint") != 1) {
-        object.style.visibility = "hidden";
-      }
-    };
+  const eraser = tehonPanel.children[kanjiPos]
+    .shadowRoot.querySelector(".eraser");
+  eraser.onclick = () => {
+    const data = tegakiPad.toData();
+    if (data) {
+      tegakiPad.clear();
+    }
+    const pos = parseInt(object.dataset.pos);
+    const scoreObj = tegakiPanel.children[pos]
+      .shadowRoot.querySelector(".score");
+    scoreObj.classList.add("d-none");
+    if (localStorage.getItem("hint") != 1) {
+      object.style.visibility = "hidden";
+    }
+  };
 }
 
 function setDict(tehonPanel, object, kanji) {
@@ -726,9 +725,8 @@ function initQuery() {
         });
       }
       loadDrill(problems);
-      document.getElementById("problems").children[0].shadowRoot.querySelector(
-        ".guard",
-      ).style.height = "0";
+      document.getElementById("problems").children[0]
+        .shadowRoot.querySelector(".guard").style.height = "0";
     });
   });
 }
