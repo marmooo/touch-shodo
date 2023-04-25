@@ -51,15 +51,15 @@ function selectFont(obj) {
     fontName + "-600.jpg";
 }
 
-function changeGrade() {
-  grade = this.selectedIndex + 1;
+function changeGrade(event) {
+  grade = event.target.selectedIndex + 1;
   setProblems();
   setCleared();
   localStorage.setItem("grade", grade);
 }
 
-function changeLevel() {
-  const level = this.selectedIndex;
+function changeLevel(event) {
+  const level = event.target.selectedIndex;
   localStorage.setItem("touch-shodo-level", level);
 }
 
@@ -181,7 +181,7 @@ document.getElementById("search").addEventListener("keydown", (event) => {
       location.href = `/touch-shodo/drill/?q=${words}`;
     }
   }
-}, false);
+});
 
 let selectedFontName = localStorage.getItem("touch-shodo-font");
 if (!selectedFontName) {
