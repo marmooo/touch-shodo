@@ -667,10 +667,6 @@ function shuffle(array) {
   return array;
 }
 
-function uniq(array) {
-  return array.filter((elem, index, self) => self.indexOf(elem) === index);
-}
-
 function fetchJson(grade) {
   return new Promise((resolve) => {
     fetch(`/touch-shodo/data/${grade}.json`)
@@ -712,7 +708,7 @@ function initQuery() {
         grades[g] = true;
       }
     }
-    fetchJsons(uniq(targetGrades)).then((data) => {
+    fetchJsons([...new Set(targetGrades)]).then((data) => {
       let problems = [];
       if (targetKanjis.length == 1) {
         const kanji = targetKanjis[0];
