@@ -247,7 +247,7 @@ function estimateFontWidth(ctx, kanji, spacing, fontSize) {
 }
 
 function drawFont(canvas, kanji, loadCanvas) {
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { alpha: false });
   const spacing = canvasSize * 0.1;
   const fontSize = canvasSize * 0.8;
   ctx.font = fontSize + "px " + fontFamily;
@@ -589,7 +589,7 @@ function getKanjiScore(tegakiData, object) {
   markerCanvas.setAttribute("width", canvasSize);
   markerCanvas.setAttribute("height", canvasSize);
   const markerContext = markerCanvas
-    .getContext("2d", { willReadFrequently: true });
+    .getContext("2d", { alpha: false });
   const markerPad = new SignaturePad(markerCanvas, {
     minWidth: markerWidth,
     maxWidth: markerWidth,
@@ -599,8 +599,8 @@ function getKanjiScore(tegakiData, object) {
   const tegakiImgData =
     markerContext.getImageData(0, 0, canvasSize, canvasSize).data;
   const tegakiCount = countNoTransparent(tegakiImgData);
-  const tehonImgData =
-    object.getContext("2d").getImageData(0, 0, canvasSize, canvasSize).data;
+  const tehonImgData = object.getContext("2d", { alpha: false })
+    .getImageData(0, 0, canvasSize, canvasSize).data;
   const tehonCount = countNoTransparent(tehonImgData);
 
   const inclusionCount = getInclusionCount(tegakiImgData, tehonImgData);
