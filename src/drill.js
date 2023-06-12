@@ -556,17 +556,17 @@ function getInclusionCount(tegakiImgData, tehonImgData) {
 function getScoringFactor(level) {
   switch (level) {
     case 0:
-      return 0.5 ** 2;
+      return 0.4 ** 2;
     case 1:
-      return 0.6 ** 2;
+      return 0.5 ** 2;
     case 2:
-      return 0.7 ** 2;
+      return 0.6 ** 2;
     case 3:
-      return 0.8 ** 2;
-    case 4:
-      return 0.9 ** 2;
-    default:
       return 0.7 ** 2;
+    case 4:
+      return 0.8 ** 2;
+    default:
+      return 0.6 ** 2;
   }
 }
 
