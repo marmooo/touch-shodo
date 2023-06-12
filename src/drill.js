@@ -247,7 +247,7 @@ function estimateFontWidth(ctx, kanji, spacing, fontSize) {
 }
 
 function drawFont(canvas, kanji, loadCanvas) {
-  const ctx = canvas.getContext("2d", { alpha: false });
+  const ctx = canvas.getContext("2d");
   const spacing = canvasSize * 0.1;
   const fontSize = canvasSize * 0.8;
   ctx.font = fontSize + "px " + fontFamily;
