@@ -588,8 +588,7 @@ function getKanjiScore(tegakiData, object) {
   const markerCanvas = document.createElement("canvas");
   markerCanvas.setAttribute("width", canvasSize);
   markerCanvas.setAttribute("height", canvasSize);
-  const markerContext = markerCanvas
-    .getContext("2d", { alpha: false });
+  const markerContext = markerCanvas.getContext("2d");
   const markerPad = new SignaturePad(markerCanvas, {
     minWidth: markerWidth,
     maxWidth: markerWidth,
@@ -599,7 +598,7 @@ function getKanjiScore(tegakiData, object) {
   const tegakiImgData =
     markerContext.getImageData(0, 0, canvasSize, canvasSize).data;
   const tegakiCount = countNoTransparent(tegakiImgData);
-  const tehonImgData = object.getContext("2d", { alpha: false })
+  const tehonImgData = object.getContext("2d")
     .getImageData(0, 0, canvasSize, canvasSize).data;
   const tehonCount = countNoTransparent(tehonImgData);
 
