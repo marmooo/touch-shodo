@@ -48,7 +48,7 @@ function selectFont(obj) {
   const fontName = fileName.split(".")[0].split("-")[0];
   localStorage.setItem("touch-shodo-font", fontName);
   document.getElementById("selectedFont").src = "/touch-shodo/fonts/" +
-    fontName + "-600.jpg";
+    fontName + "-600.webp";
 }
 
 function changeGrade(event) {
@@ -65,7 +65,7 @@ function changeLevel(event) {
 
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
-    document.documentElement.dataset.theme = "dark";
+    document.documentElement.setAttribute("data-bs-theme", "dark");
   }
   if (localStorage.getItem("grade")) {
     grade = parseInt(localStorage.getItem("grade"));
@@ -80,10 +80,10 @@ function loadConfig() {
 function toggleDarkMode() {
   if (localStorage.getItem("darkMode") == 1) {
     localStorage.setItem("darkMode", 0);
-    delete document.documentElement.dataset.theme;
+    document.documentElement.setAttribute("data-bs-theme", "light");
   } else {
     localStorage.setItem("darkMode", 1);
-    document.documentElement.dataset.theme = "dark";
+    document.documentElement.setAttribute("data-bs-theme", "dark");
   }
 }
 
@@ -188,5 +188,5 @@ if (!selectedFontName) {
   selectedFontName = "KouzanMouhituFont";
 }
 document.getElementById("selectedFont").src = "/touch-shodo/fonts/" +
-  selectedFontName + "-600.jpg";
+  selectedFontName + "-600.webp";
 new bootstrap.Carousel(document.getElementById("fontsCarousel"));
