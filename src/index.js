@@ -138,26 +138,16 @@ function generateDrill() {
   }
 }
 
-function setLinkTemplate() {
-  const a = document.createElement("a");
-  a.className = "me-1 mb-1 btn btn-outline-secondary btn-sm";
-  a.role = "button";
-  return a;
-}
-const linkTemplate = setLinkTemplate();
-
 function setProblems() {
   const problems = document.getElementById("problems");
-  while (problems.lastElementChild) {
-    problems.removeChild(problems.lastChild);
-  }
+  let html = "";
   for (let i = 0; i < gradeByKanjis[grade].length; i++) {
     const kanji = gradeByKanjis[grade][i];
-    const a = linkTemplate.cloneNode();
-    a.href = `/touch-shodo/drill/?q=${kanji}`;
-    a.textContent = kanji;
-    problems.appendChild(a);
+    const url = `/touch-shodo/drill/?q=${kanji}`;
+    const klass = "me-1 mb-1 btn btn-sm btn-outline-secondary";
+    html += `<a href="${url}" class="${klass}">${kanji}</a>`;
   }
+  problems.innerHTML = html;
 }
 
 setProblems();
