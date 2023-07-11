@@ -55,8 +55,7 @@
         font-family: KouzanBrushFontSousyo;
         src: url('/touch-shodo/fonts/KouzanBrushFontSousyo.woff2') format('woff2');
       }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
-      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
+      html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
     </style>
   </head>
   <body>
@@ -64,7 +63,7 @@
       <nav class="navbar navbar-expand">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/touch-shodo/">
-            <img alt="タッチ書道ドリル" src="/touch-shodo/favicon/favicon.svg" width="32" height="32">
+            <img class="favicon" alt="タッチ書道ドリル" src="/touch-shodo/favicon/favicon.svg" width="32" height="32">
             タッチ書道ドリル
           </a>
           <div class="navbar-nav">

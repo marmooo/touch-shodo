@@ -774,8 +774,12 @@ function scrollEvent(e) {
 function getGlobalCSS() {
   let cssText = "";
   for (const stylesheet of document.styleSheets) {
-    for (const rule of stylesheet.cssRules) {
-      cssText += rule.cssText;
+    try {
+      for (const rule of stylesheet.cssRules) {
+        cssText += rule.cssText;
+      }
+    } catch {
+      // skip cross-domain issue (Google Fonts)
     }
   }
   const css = new CSSStyleSheet();
