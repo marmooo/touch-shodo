@@ -208,7 +208,7 @@ class TehonBox extends HTMLElement {
     this.shadowRoot.appendChild(template);
 
     if (document.documentElement.getAttribute("data-bs-theme") == "dark") {
-      [...this.shadowRoot.querySelectorAll("object, canvas")].forEach((canvas) => {
+      [...this.shadowRoot.querySelectorAll("canvas")].forEach((canvas) => {
         canvas.setAttribute("style", "filter: invert(1) hue-rotate(180deg);");
       });
     }
