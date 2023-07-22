@@ -1,4 +1,4 @@
-var CACHE_NAME = "2023-07-11 21:15";
+var CACHE_NAME = "2023-07-22 11:11";
 var urlsToCache = [
   "/touch-shodo/",
   "/touch-shodo/index.js",
@@ -10,7 +10,7 @@ var urlsToCache = [
   "/touch-shodo/mp3/stupid5.mp3",
   "/touch-shodo/favicon/favicon.svg",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js",
-  "https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js",
+  "https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js",
 ];
 
 self.addEventListener("install", function (event) {
