@@ -10,7 +10,7 @@ const urlsToCache = [
   "/touch-shodo/mp3/stupid5.mp3",
   "/touch-shodo/favicon/favicon.svg",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
-  "https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js",
+  "https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js",
 ];
 
 self.addEventListener("install", (event) => {
