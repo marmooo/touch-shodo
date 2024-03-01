@@ -26,7 +26,7 @@ let level = 2;
 let prevCanvasSize;
 let canvasSize = 140;
 let maxWidth = 4;
-if (window.innerWidth >= 768) {
+if (globalThis.innerWidth >= 768) {
   canvasSize = 280;
   maxWidth = 8;
 }
@@ -326,7 +326,7 @@ function setScoringButton(
             const headerHeight = document.getElementById("header").offsetHeight;
             const top = next.getBoundingClientRect().top +
               document.documentElement.scrollTop - headerHeight;
-            window.scrollTo({ top: top, behavior: "smooth" });
+            globalThis.scrollTo({ top: top, behavior: "smooth" });
           }
         }
         // 点数があまりにも低いものは合格リストから除外
@@ -478,9 +478,9 @@ function loadDrill(drill) {
     const pads = loadProblem(wordYomi);
     tegakiPads = tegakiPads.concat(pads);
   });
-  window.onresize = () => {
+  globalThis.onresize = () => {
     prevCanvasSize = canvasSize;
-    if (window.innerWidth >= 768) {
+    if (globalThis.innerWidth >= 768) {
       canvasSize = 280;
       maxWidth = 8;
     } else {
