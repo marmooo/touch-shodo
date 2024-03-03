@@ -1,27 +1,9 @@
 import { JKAT } from "https://cdn.jsdelivr.net/npm/@marmooo/kanji@0.0.8/esm/jkat.js";
 
+const previewText = "百花繚乱　疾風迅雷\n明鏡止水　不撓不屈\n国士無双　行雲流水";
+const googleFontsURL = new URL("https://fonts.googleapis.com/css2");
 let grade = 3;
 loadConfig();
-
-function selectFont(obj) {
-  const fileName = obj.src.split("/").slice(-1)[0];
-  const fontName = fileName.split(".")[0].split("-")[0];
-  localStorage.setItem("touch-shodo-font", fontName);
-  document.getElementById("selectedFont").src = "/touch-shodo/fonts/" +
-    fontName + "-600.webp";
-}
-
-function changeGrade(event) {
-  grade = event.target.selectedIndex;
-  setProblems();
-  setCleared();
-  localStorage.setItem("grade", grade);
-}
-
-function changeLevel(event) {
-  const level = event.target.selectedIndex;
-  localStorage.setItem("touch-shodo-level", level);
-}
 
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
@@ -35,6 +17,10 @@ function loadConfig() {
     const level = parseInt(localStorage.getItem("touch-shodo-level"));
     document.getElementById("levelOption").options[level].selected = true;
   }
+  if (localStorage.getItem("touch-shodo-font")) {
+    const fontURL = localStorage.getItem("touch-shodo-font");
+    selectFontFromURLBase(fontURL);
+  }
 }
 
 function toggleDarkMode() {
@@ -45,6 +31,83 @@ function toggleDarkMode() {
     localStorage.setItem("darkMode", 1);
     document.documentElement.setAttribute("data-bs-theme", "dark");
   }
+}
+
+function getGoogleFontsURL(fontFamily) {
+  const params = new URLSearchParams();
+  params.set("family", fontFamily);
+  params.set("text", previewText);
+  params.set("display", "swap");
+  googleFontsURL.search = params;
+  return googleFontsURL.toString();
+}
+
+async function loadGoogleFonts(fontFamily) {
+  const url = getGoogleFontsURL(fontFamily);
+  const response = await fetch(url);
+  const css = await response.text();
+  const matchUrls = css.match(/url\(.+?\)/g);
+  for (const url of matchUrls) {
+    const font = new FontFace(fontFamily, url);
+    await font.load();
+    document.fonts.add(font);
+  }
+}
+
+async function selectFontFromURLBase(fontURL) {
+  try {
+    const url = new URL(fontURL);
+    document.getElementById("fontLoadError").classList.add("d-none");
+    if (url.host == googleFontsURL.host) {
+      const fontFamily = new URLSearchParams(url.search).get("family");
+      const formattedURL = getGoogleFontsURL(fontFamily);
+      await loadGoogleFonts(fontFamily);
+      localStorage.setItem("touch-shodo-font", formattedURL);
+      document.getElementById("selectedFont").style.fontFamily = fontFamily;
+    } else { // .ttf, .woff, .woff2
+      const fontFamily = "abc";
+      const fontFace = new FontFace(fontFamily, `url(${url})`);
+      await fontFace.load();
+      document.fonts.add(fontFace);
+      localStorage.setItem("touch-shodo-font", url);
+      document.getElementById("selectedFont").style.fontFamily = fontFamily;
+    }
+  } catch (err) {
+    console.log(err);
+    document.getElementById("fontLoadError").classList.remove("d-none");
+  }
+}
+
+async function selectFontFromURL() {
+  const button = document.getElementById("selectFontFromURL");
+  const fontLoading = document.getElementById("fontLoading");
+  button.classList.add("disabled");
+  fontLoading.classList.remove("d-none");
+  const fontURL = document.getElementById("fontURL").value;
+  await selectFontFromURLBase(fontURL);
+  button.classList.remove("disabled");
+  fontLoading.classList.add("d-none");
+}
+
+function selectFont(event) {
+  const id = event.currentTarget.getAttribute("id");
+  const fontFamily = id.replace(/-/g, " ");
+  const baseURL = "https://marmooo.github.io/touch-shodo/fonts";
+  const fontURL = `${baseURL}/${fontFamily}.woff2`;
+  localStorage.setItem("touch-shodo-font", fontURL);
+  document.getElementById("selectedFont").style.fontFamily = fontFamily;
+}
+
+function changeGrade(event) {
+  grade = event.target.selectedIndex;
+  setProblems();
+  setCleared();
+  localStorage.setItem("grade", grade);
+}
+
+function changeLevel(event) {
+  const level = event.target.selectedIndex;
+  localStorage.setItem("touch-shodo-level", level);
 }
 
 function setCleared() {
@@ -113,6 +176,9 @@ function setProblems() {
 setProblems();
 setCleared();
 
+const fontsCarousel = document.getElementById("fontsCarousel");
+new bootstrap.Carousel(fontsCarousel);
+
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("deleteData").onclick = deleteData;
 document.getElementById("generateDrill").onclick = generateDrill;
@@ -120,10 +186,10 @@ document.getElementById("testRemained").onclick = testRemained;
 document.getElementById("testCleared").onclick = testCleared;
 document.getElementById("gradeOption").onchange = changeGrade;
 document.getElementById("levelOption").onchange = changeLevel;
-[...document.getElementById("fontsCarousel").getElementsByTagName("img")]
-  .forEach((img) => {
-    img.onclick = selectFont;
-  });
+document.getElementById("selectFontFromURL").onclick = selectFontFromURL;
+[...fontsCarousel.getElementsByClassName("selectFont")].forEach((node) => {
+  node.onclick = selectFont;
+});
 document.getElementById("search").addEventListener("keydown", (event) => {
   if (event.key == "Enter") {
     const words = event.target.value;
@@ -132,11 +198,6 @@ document.getElementById("search").addEventListener("keydown", (event) => {
     }
   }
 });
-
-let selectedFontName = localStorage.getItem("touch-shodo-font");
-if (!selectedFontName) {
-  selectedFontName = "KouzanMouhituFont";
-}
-document.getElementById("selectedFont").src = "/touch-shodo/fonts/" +
-  selectedFontName + "-600.webp";
-new bootstrap.Carousel(document.getElementById("fontsCarousel"));
+document.getElementById("fontURL").addEventListener("keydown", (event) => {
+  if (event.key == "Enter") selectFontFromURL();
+});

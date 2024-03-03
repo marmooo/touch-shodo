@@ -16,6 +16,7 @@ const dirNames = [
   "準1級",
   "1級",
 ];
+const googleFontsURL = new URL("https://fonts.googleapis.com/css2");
 const repeatCount = 3;
 let canvasSize = 140;
 let prevCanvasSize;
@@ -128,7 +129,6 @@ function toggleVoice() {
     voiceOff.classList.remove("d-none");
   }
 }
-
 
 async function playAudio(name, volume) {
   const audioBuffer = await loadAudio(name, audioBufferCache[name]);
@@ -297,7 +297,7 @@ function drawFont(canvas, kanji, loadCanvas) {
   const ctx = canvas.getContext("2d", { willReadFrequently: true });
   const spacing = canvasSize * 0.1;
   const fontSize = canvasSize * 0.8;
-  ctx.font = fontSize + "px " + fontFamily;
+  ctx.font = `${fontSize}px ${fontFamily}`;
   if (loadCanvas) {
     ctx.fillStyle = "lightgray";
     fillTextBold(ctx, kanji, spacing, fontSize);
@@ -317,13 +317,13 @@ function loadFont(kanji, kanjiId, parentNode, pos, loadCanvas) {
   boxes.push(box);
   // // SVG はセキュリティ上 Web フォントは dataURI で埋め込む必要がある
   // // 重過ぎるので canvas でレンダリングすべき
-  // let object = box.shadowRoot.querySelector('svg');
-  // let text = object.querySelector('text');
+  // let object = box.shadowRoot.querySelector("svg");
+  // let text = object.querySelector("text");
   // text.textContent = kanji;
-  // text.setAttribute('font-family', fontFamily);
+  // text.setAttribute("font-family", fontFamily);
   // if (loadCanvas) {
-  //   text.setAttribute('fill', 'lightgray');
-  //   text.setAttribute('font-weight', 900);
+  //   text.setAttribute("fill", "lightgray");
+  //   text.setAttribute("font-weight", 900);
   // }
   const object = box.shadowRoot.querySelector(".tehon");
   object.setAttribute("alt", kanji);
@@ -732,47 +732,77 @@ async function fetchJsons(grades) {
   return data;
 }
 
-function initQuery() {
-  const fontFace = new FontFace(
-    fontFamily,
-    "url(https://marmooo.github.io/touch-shodo/fonts/" + fontFamily + ".woff2)",
-  );
-  fontFace.load().then(() => {
-    document.fonts.add(fontFace);
+async function loadGoogleFonts(fontFamily) {
+  const text = [...new Set(Array.from(kanjis))];
+  const params = new URLSearchParams();
+  params.set("family", fontFamily);
+  params.set("text", text);
+  params.set("display", "swap");
+  googleFontsURL.search = params;
 
-    const num = 5;
-    const query = new URLSearchParams(location.search);
-    kanjis = query.get("q") || "学";
-    const targetKanjis = [];
-    const targetGrades = [];
-    const grades = new Array(10);
-    Array.from(kanjis).forEach((kanji) => {
-      const g = jkat.getGrade(kanji);
-      if (g >= 0) {
-        targetKanjis.push(kanji);
-        targetGrades.push(g);
-        grades[g] = true;
-      }
-    });
-    fetchJsons([...new Set(targetGrades)]).then((data) => {
-      words = [];
-      if (targetKanjis.length == 1) {
-        const kanji = targetKanjis[0];
-        const grade = targetGrades[0];
-        words = [data[grade][kanji].shift()];
-        words = words.concat(shuffle(data[grade][kanji]).slice(0, num));
-      } else {
-        targetKanjis.forEach((kanji, i) => {
-          const grade = targetGrades[i];
-          const candidates = data[grade][kanji].slice(1);
-          words = words.concat(shuffle(candidates)[0]);
-        });
-      }
-      loadDrill(words);
-      document.getElementById("problems").children[0]
-        .shadowRoot.querySelector(".guard").style.height = "0";
-    });
+  const response = await fetch(googleFontsURL);
+  const css = await response.text();
+  const matchUrls = css.match(/url\(.+?\)/g);
+  for (const url of matchUrls) {
+    const font = new FontFace(fontFamily, url);
+    await font.load();
+    document.fonts.add(font);
+  }
+}
+
+function initProblems() {
+  const num = 5;
+  const targetKanjis = [];
+  const targetGrades = [];
+  const grades = new Array(10);
+  Array.from(kanjis).forEach((kanji) => {
+    const g = jkat.getGrade(kanji);
+    if (g >= 0) {
+      targetKanjis.push(kanji);
+      targetGrades.push(g);
+      grades[g] = true;
+    }
   });
+  fetchJsons([...new Set(targetGrades)]).then((data) => {
+    words = [];
+    if (targetKanjis.length == 1) {
+      const kanji = targetKanjis[0];
+      const grade = targetGrades[0];
+      words = [data[grade][kanji].shift()];
+      words = words.concat(shuffle(data[grade][kanji]).slice(0, num));
+    } else {
+      targetKanjis.forEach((kanji, i) => {
+        const grade = targetGrades[i];
+        const candidates = data[grade][kanji].slice(1);
+        words = words.concat(shuffle(candidates)[0]);
+      });
+    }
+    loadDrill(words);
+    document.getElementById("problems").children[0]
+      .shadowRoot.querySelector(".guard").style.height = "0";
+  });
+}
+
+async function initQuery() {
+  const searchParams = new URL(location.href).searchParams;
+  kanjis = searchParams.get("q") || "学";
+  let fontURL = localStorage.getItem("touch-shodo-font");
+  if (!fontURL) fontURL = googleFontsURL.toString();
+  try {
+    const url = new URL(fontURL);
+    if (url.host == googleFontsURL.host) {
+      fontFamily = url.searchParams.get("family");
+      await loadGoogleFonts(fontFamily);
+    } else {
+      fontFamily = "abc";
+      const fontFace = new FontFace(fontFamily, `url(${fontURL})`);
+      await fontFace.load();
+      document.fonts.add(fontFace);
+    }
+    initProblems();
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function getGlobalCSS() {

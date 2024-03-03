@@ -33,9 +33,38 @@
     <link rel="manifest" href="/touch-shodo/favicon/site.webmanifest">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+      @font-face {
+        font-family: aoyagireisyosimo;
+        src:url("fonts/aoyagireisyosimo-preview.woff2") format("woff2");
+      }
+      @font-face {
+        font-family:AoyagiKouzanT;
+        src:url("fonts/AoyagiKouzanT-preview.woff2") format("woff2");
+      }
+      @font-face {
+        font-family:AoyagiSosekiFont;
+        src:url("fonts/AoyagiSosekiFont-preview.woff2") format("woff2");
+      }
+      @font-face {
+        font-family:KouzanBrushFontSousyo;
+        src:url("fonts/KouzanBrushFontSousyo-preview.woff2") format("woff2");
+      }
+      @font-face {
+        font-family:KouzanGyousho;
+        src:url("fonts/KouzanGyousho-preview.woff2") format("woff2");
+      }
+      @font-face {
+        font-family:KouzanMouhituFont;
+        src:url("fonts/KouzanMouhituFont-preview.woff2") format("woff2");
+      }
+      #aoyagireisyosimo { font-family:aoyagireisyosimo; font-display:swap; }
+      #AoyagiKouzanT { font-family:AoyagiKouzanT; font-display:swap; }
+      #AoyagiSosekiFont { font-family:AoyagiSosekiFont; font-display:swap; }
+      #KouzanBrushFontSousyo { font-family:KouzanBrushFontSousyo; font-display:swap; }
+      #KouzanGyousho { font-family:KouzanGyousho; font-display:swap; }
+      #KouzanMouhituFont { font-family:KouzanMouhituFont; font-display:swap; }
+      #selectedFont { font-family:aoyagireisyosimo; }
       html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
-      html[data-bs-theme="dark"] #fontsCarousel img { filter: invert(1) hue-rotate(180deg); }
-      html[data-bs-theme="dark"] #selectedFont { filter: invert(1) hue-rotate(180deg); }
     </style>
     <script data-ad-client="ca-pub-6459713332128733" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
@@ -87,23 +116,65 @@
               <h6>タッチで選択</h6>
               <div id="fontsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/aoyagireisyosimo-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded d-block" role="button" decoding="async">
+                  <div class="carousel-item active" role="button">
+                    <div id="aoyagireisyosimo" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
-                  <div class="carousel-item" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/AoyagiSosekiFont-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded d-block" role="button" loading="lazy">
+                  <div class="carousel-item" role="button">
+                    <div id="AoyagiKouzanT" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
-                  <div class="carousel-item" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/KouzanMouhituFont-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded d-block" role="button" loading="lazy">
+                  <div class="carousel-item" role="button">
+                    <div id="AoyagiSosekiFont" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
-                  <div class="carousel-item" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/KouzanGyousho-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded d-block" role="button" loading="lazy">
+                  <div class="carousel-item" role="button">
+                    <div id="KouzanBrushFontSousyo" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
-                  <div class="carousel-item" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/KouzanBrushFontSousyo-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded d-block" role="button" loading="lazy">
+                  <div class="carousel-item" role="button">
+                    <div id="KouzanGyousho" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
-                  <div class="carousel-item" data-bs-interval="10000">
-                    <img src="/touch-shodo/fonts/AoyagiKouzanT-600.webp" width="600" height="200" alt="AoyagiKouzanTFont" class="img-fluid rounded d-block" role="button" loading="lazy">
+                  <div class="carousel-item" role="button">
+                    <div id="KouzanMouhituFont" class="selectFont d-flex flex-wrap justify-content-center py-2 h2">
+                      <div class="px-1">臨機応変</div>
+                      <div class="px-1">疾風迅雷</div>
+                      <div class="px-1">明鏡止水</div>
+                      <div class="px-1">一糸不乱</div>
+                      <div class="px-1">伝家宝刀</div>
+                      <div class="px-1">奇想天外</div>
+                    </div>
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#fontsCarousel" data-bs-slide="prev">
@@ -118,7 +189,28 @@
             </div>
             <div class="col">
               <h6>選択中</h6>
-              <img id="selectedFont" src="/touch-shodo/fonts/KouzanMouhituFont-600.webp" width="600" height="200" alt="KouzanMouhituFont" class="img-fluid rounded" decoding="async">
+              <div id="selectedFont" class="d-flex flex-wrap justify-content-center py-2 h2">
+                <div class="px-1">臨機応変</div>
+                <div class="px-1">疾風迅雷</div>
+                <div class="px-1">明鏡止水</div>
+                <div class="px-1">一糸不乱</div>
+                <div class="px-1">伝家宝刀</div>
+                <div class="px-1">奇想天外</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="input-group">
+              <span class="input-group-text">URLから選択:</span>
+              <input id="fontURL" type="text" class="form-control" placeholder="https://fonts.googleapis.com/css2?family=Noto+Sans+JP">
+              <button id="selectFontFromURL" class="btn btn-outline-secondary" type="button">
+                <span id="fontLoading" class="d-none spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+                参照
+              </button>
+            </div>
+            <div id="fontLoadError" class="alert alert-warning text-center d-none">
+              フォントのURLを入力してください (例: .ttf, .woff, .woff2, Google Fonts)
             </div>
           </div>
         </div>
