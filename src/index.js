@@ -1,6 +1,6 @@
 import { JKAT } from "https://cdn.jsdelivr.net/npm/@marmooo/kanji@0.0.8/esm/jkat.js";
 
-const previewText = "百花繚乱　疾風迅雷\n明鏡止水　不撓不屈\n国士無双　行雲流水";
+const previewText = "百花繚乱疾風迅雷明鏡止水不撓不屈国士無双行雲流水";
 const googleFontsURL = new URL("https://fonts.googleapis.com/css2");
 let grade = 3;
 loadConfig();
