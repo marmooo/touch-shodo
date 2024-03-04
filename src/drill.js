@@ -29,7 +29,6 @@ if (globalThis.innerWidth >= 768) {
   maxWidth = 8;
 }
 let kanjis = "";
-let words = [];
 let level = 2;
 let clearCount = 0;
 let fontFamily = "aoyagireisyosimo";
@@ -537,28 +536,6 @@ function resizeTehonContents() {
   }
 }
 
-function loadDrill(drill) {
-  let tegakiPads = [];
-  drill.forEach((wordYomi) => {
-    const pads = loadProblem(wordYomi);
-    tegakiPads = tegakiPads.concat(pads);
-  });
-  globalThis.addEventListener("resize", () => {
-    prevCanvasSize = canvasSize;
-    if (globalThis.innerWidth >= 768) {
-      canvasSize = 280;
-      maxWidth = 8;
-    } else {
-      canvasSize = 140;
-      maxWidth = 4;
-    }
-    if (prevCanvasSize != canvasSize) {
-      resizeTegakiContents(tegakiPads);
-      resizeTehonContents();
-    }
-  });
-}
-
 function toggleAllStroke() {
   const problems = document.getElementById("problems").children;
   for (const problem of problems) {
@@ -722,18 +699,9 @@ function fetchJson(grade) {
   });
 }
 
-async function fetchJsons(grades) {
-  const data = new Array(10);
-  for (let i = 0; i < grades.length; i++) {
-    await fetchJson(grades[i]).then((res) => {
-      data[grades[i]] = res;
-    });
-  }
-  return data;
-}
-
 async function loadGoogleFonts(fontFamily) {
-  const text = [...new Set(Array.from(kanjis))];
+  const problemText = words.flat().map((str) => str.split("|")[0]).join("");
+  const text = [...new Set(problemText)].join("");
   const params = new URLSearchParams();
   params.set("family", fontFamily);
   params.set("text", text);
@@ -750,42 +718,66 @@ async function loadGoogleFonts(fontFamily) {
   }
 }
 
-function initProblems() {
+async function initWords() {
   const num = 5;
-  const targetKanjis = [];
   const targetGrades = [];
-  const grades = new Array(10);
+  const targetKanjis = [];
   Array.from(kanjis).forEach((kanji) => {
-    const g = jkat.getGrade(kanji);
-    if (g >= 0) {
+    const grade = jkat.getGrade(kanji);
+    if (grade >= 0) {
+      targetGrades.push(grade);
       targetKanjis.push(kanji);
-      targetGrades.push(g);
-      grades[g] = true;
     }
   });
-  fetchJsons([...new Set(targetGrades)]).then((data) => {
-    words = [];
-    if (targetKanjis.length == 1) {
-      const kanji = targetKanjis[0];
-      const grade = targetGrades[0];
-      words = [data[grade][kanji].shift()];
-      words = words.concat(shuffle(data[grade][kanji]).slice(0, num));
+  const promises = targetGrades.map((grade) => fetchJson(grade));
+  const data = await Promise.all(promises);
+  const words = [];
+  if (targetKanjis.length == 1) {
+    const kanji = targetKanjis[0];
+    const onkun = data[0][kanji].shift();
+    const problems = shuffle(data[0][kanji]);
+    words.push(onkun, ...problems.slice(0, num));
+  } else {
+    data.forEach((datum, i) => {
+      const kanji = targetKanjis[i];
+      datum[kanji].shift();
+      const problems = shuffle(datum[kanji]);
+      words.push(problems[0]);
+    });
+  }
+  return words;
+}
+
+function initDrill() {
+  const tegakiPads = [];
+  words.forEach((word) => {
+    const pads = loadProblem(word);
+    tegakiPads.push(pads);
+  });
+  document.getElementById("problems").children[0]
+    .shadowRoot.querySelector(".guard").style.height = "0";
+  globalThis.addEventListener("resize", () => {
+    prevCanvasSize = canvasSize;
+    if (globalThis.innerWidth >= 768) {
+      canvasSize = 280;
+      maxWidth = 8;
     } else {
-      targetKanjis.forEach((kanji, i) => {
-        const grade = targetGrades[i];
-        const candidates = data[grade][kanji].slice(1);
-        words = words.concat(shuffle(candidates)[0]);
-      });
+      canvasSize = 140;
+      maxWidth = 4;
     }
-    loadDrill(words);
-    document.getElementById("problems").children[0]
-      .shadowRoot.querySelector(".guard").style.height = "0";
+    if (prevCanvasSize != canvasSize) {
+      resizeTegakiContents(tegakiPads);
+      resizeTehonContents();
+    }
   });
 }
 
-async function initQuery() {
-  const searchParams = new URL(location.href).searchParams;
-  kanjis = searchParams.get("q") || "学";
+function initQuery() {
+  const params = new URLSearchParams(location.search);
+  kanjis = params.get("q") || "学";
+}
+
+async function initFonts() {
   let fontURL = localStorage.getItem("touch-shodo-font");
   if (!fontURL) fontURL = defaultFontURL.toString();
   try {
@@ -799,7 +791,6 @@ async function initQuery() {
       await fontFace.load();
       document.fonts.add(fontFace);
     }
-    initProblems();
   } catch (err) {
     console.log(err);
   }
@@ -822,8 +813,11 @@ function getGlobalCSS() {
 }
 
 const boxes = [];
-const globalCSS = getGlobalCSS();
 initQuery();
+const words = await initWords();
+await initFonts();
+const globalCSS = getGlobalCSS();
+initDrill();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("hint").onclick = toggleHint;
