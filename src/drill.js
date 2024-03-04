@@ -16,6 +16,9 @@ const dirNames = [
   "準1級",
   "1級",
 ];
+const defaultFontURL = new URL(
+  `${location.origin}/touch-shodo/fonts/aoyagireisyosimo.woff2`,
+);
 const googleFontsURL = new URL("https://fonts.googleapis.com/css2");
 const repeatCount = 3;
 let canvasSize = 140;
@@ -29,10 +32,7 @@ let kanjis = "";
 let words = [];
 let level = 2;
 let clearCount = 0;
-let fontFamily = localStorage.getItem("touch-shodo-font");
-if (!fontFamily) {
-  fontFamily = "KouzanMouhituFont";
-}
+let fontFamily = "aoyagireisyosimo";
 let japaneseVoices = [];
 loadVoices();
 loadConfig();
@@ -787,7 +787,7 @@ async function initQuery() {
   const searchParams = new URL(location.href).searchParams;
   kanjis = searchParams.get("q") || "学";
   let fontURL = localStorage.getItem("touch-shodo-font");
-  if (!fontURL) fontURL = googleFontsURL.toString();
+  if (!fontURL) fontURL = defaultFontURL.toString();
   try {
     const url = new URL(fontURL);
     if (url.host == googleFontsURL.host) {
