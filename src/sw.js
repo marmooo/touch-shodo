@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-03-10 0:20";
+const CACHE_NAME = "2024-03-13 09:40";
 const urlsToCache = [
   "/touch-shodo/",
   "/touch-shodo/index.js",
