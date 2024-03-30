@@ -6,11 +6,12 @@ import svg2ttf from "svg2ttf";
 import ttf2woff2 from "ttf2woff2";
 
 function buildPreview() {
-  const chars = "臨機応変疾風迅雷明鏡止水一糸不乱伝家宝刀奇想天外";
+  const text = "臨機応変疾風迅雷明鏡止水一糸不乱伝家宝刀奇想天外";
   for (const file of expandGlobSync("fonts/*.ttf", { globstar: true })) {
-    const svg = ttf2svgFont(file.path, chars);
-    const ttf = svg2ttf(svg);
-    const woff2 = ttf2woff2(ttf.buffer);
+    const ttf = Deno.readFileSync(file.path);
+    const svg = ttf2svgFont(ttf, { text });
+    console.log(svg);
+    const woff2 = ttf2woff2(svg2ttf(svg).buffer);
 
     const name = basename(file.path).split(".")[0];
     const outPath = `src/fonts/${name}-preview.woff2`;
@@ -21,11 +22,11 @@ function buildPreview() {
 function buildWoff2() {
   const hirakanas = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵ";
   const kanjis = JKAT.slice(0, 10).flat().join("");
-  const chars = hirakanas + kanjis;
+  const text = hirakanas + kanjis;
   for (const file of expandGlobSync("fonts/*.ttf", { globstar: true })) {
-    const svg = ttf2svgFont(file.path, chars);
-    const ttf = svg2ttf(svg);
-    const woff2 = ttf2woff2(ttf.buffer);
+    const ttf = Deno.readFileSync(file.path);
+    const svg = ttf2svgFont(ttf, { text });
+    const woff2 = ttf2woff2(svg2ttf(svg).buffer);
 
     const name = basename(file.path).split(".")[0];
     const outPath = `src/fonts/${name}.woff2`;
