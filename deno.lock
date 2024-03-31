@@ -3,7 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:@marmooo/kanji@0.0.8": "npm:@marmooo/kanji@0.0.8",
-      "npm:@marmooo/ttf2svg@0.1.6": "npm:@marmooo/ttf2svg@0.1.6",
+      "npm:@marmooo/ttf2svg@0.1.7": "npm:@marmooo/ttf2svg@0.1.7",
       "npm:svg2ttf@6.0.3": "npm:svg2ttf@6.0.3",
       "npm:ttf2woff2@5.0.0": "npm:ttf2woff2@5.0.0"
     },
@@ -27,11 +27,11 @@
         "integrity": "sha512-TqQdQc7p1BJV8dxKv3usx731KzaQ4Q+o83td2Sudz3sb4WhxezYoEUpg4RhEHW33ywlNyaGtb2JAUna59F00Vg==",
         "dependencies": {}
       },
-      "@marmooo/ttf2svg@0.1.6": {
-        "integrity": "sha512-3kHtrD8mvqB07HC9pAWDsn8NiRWOMpgQGnk2SLD324AKm3bSx5WPqW+Hzpwg3B7PRHpLm+LZYotKFmuSQUPxOQ==",
+      "@marmooo/ttf2svg@0.1.7": {
+        "integrity": "sha512-G9qDSxJ0ID3YihfIoNGm2tEllqd35MPJEhq6gp+uZCgl0T91ZCpp+Eu3ckyBoWrmhsPeRVs9zTPNO3Hf/K8FOw==",
         "dependencies": {
           "@deno/shim-deno": "@deno/shim-deno@0.18.2",
-          "commander": "commander@11.1.0",
+          "commander": "commander@12.0.0",
           "opentype.js": "opentype.js@1.3.4",
           "svgpath": "svgpath@2.6.0"
         }
@@ -164,8 +164,8 @@
         "integrity": "sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==",
         "dependencies": {}
       },
-      "commander@11.1.0": {
-        "integrity": "sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==",
+      "commander@12.0.0": {
+        "integrity": "sha512-MwVNWlYjDTtOjX5PiD7o5pK0UrFU/OYgcJfjjK4RaHZETNtjJqrZa9Y9ds88+A+f+d5lv+561eZ+yCKoS3gbAA==",
         "dependencies": {}
       },
       "concat-map@0.0.1": {
@@ -803,7 +803,7 @@
   "workspace": {
     "dependencies": [
       "npm:@marmooo/kanji@0.0.8",
-      "npm:@marmooo/ttf2svg@0.1.6",
+      "npm:@marmooo/ttf2svg@0.1.7",
       "npm:svg2ttf@6.0.3",
       "npm:ttf2woff2@5.0.0"
     ]
