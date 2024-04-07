@@ -3,7 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:@marmooo/kanji@0.0.8": "npm:@marmooo/kanji@0.0.8",
-      "npm:@marmooo/ttf2svg@0.1.7": "npm:@marmooo/ttf2svg@0.1.7",
+      "npm:@marmooo/ttf2svg@0.1.8": "npm:@marmooo/ttf2svg@0.1.8",
       "npm:svg2ttf@6.0.3": "npm:svg2ttf@6.0.3",
       "npm:ttf2woff2@5.0.0": "npm:ttf2woff2@5.0.0"
     },
@@ -27,8 +27,8 @@
         "integrity": "sha512-TqQdQc7p1BJV8dxKv3usx731KzaQ4Q+o83td2Sudz3sb4WhxezYoEUpg4RhEHW33ywlNyaGtb2JAUna59F00Vg==",
         "dependencies": {}
       },
-      "@marmooo/ttf2svg@0.1.7": {
-        "integrity": "sha512-G9qDSxJ0ID3YihfIoNGm2tEllqd35MPJEhq6gp+uZCgl0T91ZCpp+Eu3ckyBoWrmhsPeRVs9zTPNO3Hf/K8FOw==",
+      "@marmooo/ttf2svg@0.1.8": {
+        "integrity": "sha512-UWNdVa9+NsY9Yne2f0lBTljWWdGGk0NTZhfUu/GXx+yNNf81FvYCIY8RWuse+Pazsmck9cNvgzQsBCXTC7MNFA==",
         "dependencies": {
           "@deno/shim-deno": "@deno/shim-deno@0.18.2",
           "commander": "commander@12.0.0",
@@ -803,7 +803,7 @@
   "workspace": {
     "dependencies": [
       "npm:@marmooo/kanji@0.0.8",
-      "npm:@marmooo/ttf2svg@0.1.7",
+      "npm:@marmooo/ttf2svg@0.1.8",
       "npm:svg2ttf@6.0.3",
       "npm:ttf2woff2@5.0.0"
     ]
