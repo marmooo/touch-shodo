@@ -10,7 +10,6 @@ function buildPreview() {
   for (const file of expandGlobSync("fonts/*.ttf", { globstar: true })) {
     const ttf = Deno.readFileSync(file.path);
     const svg = ttf2svgFont(ttf, { text });
-    console.log(svg);
     const woff2 = ttf2woff2(svg2ttf(svg).buffer);
 
     const name = basename(file.path).split(".")[0];
