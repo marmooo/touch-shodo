@@ -1,6 +1,6 @@
 import { basename } from "jsr:@std/path";
 import { expandGlobSync } from "jsr:@std/fs";
-import { convert } from "npm:fontconv@0.0.3";
+import { convert } from "npm:fontconv@0.0.7";
 import { JKAT } from "npm:@marmooo/kanji@0.0.8";
 
 async function buildPreview() {
