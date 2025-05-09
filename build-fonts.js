@@ -1,5 +1,5 @@
-import { basename } from "https://deno.land/std/path/mod.ts";
-import { expandGlobSync } from "https://deno.land/std/fs/expand_glob.ts";
+import { basename } from "jsr:@std/path";
+import { expandGlobSync } from "jsr:@std/fs";
 import { convert } from "npm:fontconv@0.0.3";
 import { JKAT } from "npm:@marmooo/kanji@0.0.8";
 
