@@ -1,7 +1,7 @@
 import { basename } from "jsr:@std/path";
 import { expandGlobSync } from "jsr:@std/fs";
 import { convert } from "npm:fontconv@0.0.7";
-import { JKAT } from "npm:@marmooo/kanji@0.0.8";
+import { JKAT } from "npm:@marmooo/kanji@0.1.1";
 
 async function buildPreview() {
   const text = "臨機応変疾風迅雷明鏡止水一糸不乱伝家宝刀奇想天外";

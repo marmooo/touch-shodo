@@ -1,5 +1,5 @@
 import { Carousel } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/+esm";
-import { JKAT } from "https://cdn.jsdelivr.net/npm/@marmooo/kanji@0.0.8/esm/jkat.js";
+import { JKAT } from "https://cdn.jsdelivr.net/npm/@marmooo/kanji@0.1.1/esm/jkat.js";
 
 const previewText = "百花繚乱疾風迅雷明鏡止水不撓不屈国士無双行雲流水";
 const googleFontsURL = new URL("https://fonts.googleapis.com/css2");
