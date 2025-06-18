@@ -714,12 +714,9 @@ function shuffle(array) {
   return array;
 }
 
-function fetchJson(grade) {
-  return new Promise((resolve) => {
-    fetch(`/touch-shodo/data/${grade + 1}.json`)
-      .then((response) => response.json())
-      .then((data) => resolve(data));
-  });
+async function fetchJson(grade) {
+  const response = await fetch(`/touch-shodo/data/${grade + 1}.json`);
+  return await response.json();
 }
 
 async function loadGoogleFonts(fontFamily) {
