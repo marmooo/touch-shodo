@@ -7,9 +7,6 @@ let grade = 3;
 loadConfig();
 
 function loadConfig() {
-  if (localStorage.getItem("darkMode") == 1) {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
   if (localStorage.getItem("grade")) {
     grade = parseInt(localStorage.getItem("grade"));
     document.getElementById("gradeOption").options[grade].selected = true;
@@ -25,13 +22,12 @@ function loadConfig() {
 }
 
 function toggleDarkMode() {
-  if (localStorage.getItem("darkMode") == 1) {
-    localStorage.setItem("darkMode", 0);
-    document.documentElement.setAttribute("data-bs-theme", "light");
-  } else {
-    localStorage.setItem("darkMode", 1);
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
+  const html = document.documentElement;
+  const newTheme = html.getAttribute("data-bs-theme") === "dark"
+    ? "light"
+    : "dark";
+  html.setAttribute("data-bs-theme", newTheme);
+  localStorage.setItem("darkMode", newTheme);
 }
 
 function getGoogleFontsURL(fontFamily) {
